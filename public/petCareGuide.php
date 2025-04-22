@@ -4,23 +4,31 @@
 $articles = [
     [
         "title" => "How to Train Your Dog",
-        "content" => "Content for training your dog."
+        "content" => "Teach basic commands:  sit, stay, come, down, fetch, and walk.
+         This lays the groundwork for good behaviour and training "
     ],
     [
         "title" => "Best Diet for Dogs",
-        "content" => "Content about the best diet for dogs."
+        "content" => "Make to maintain a proper eating pattern for your dog.
+        Always give your dog a balanced diet of high quality foods.
+        Provide fresh water always. Avoiding sugary and salty foods"
     ],
     [
         "title" => "Dog Grooming",
-        "content" => "Tips for grooming your dog ."
+        "content" => "NAIL TRIMMING to keep paws healthy. EAR CLEANING to keep ears clean.
+        TEETH CLEANING for dental care and make sure to brush your dogs fur in the direction of growth depending on the breed"
     ],
     [
         "title" => "Common Dog Health Issues",
-        "content" => "Content about common health issues for dogs."
+        "content" => " 3 common issues are :  DIABETES - always thirsty , urinating and weight loss.
+        HEART DISEASE - coughing, difficulty in breathing and fainting.
+        OBESITY -  Visible weight gain, difficulty moving and fatigue "
     ],
     [
-        "title" => "Understanding Your Dog’s Behavior",
-        "content" => "Content about understanding dog behavior ."
+      "title" => "Understanding Your Dog’s Behavior",
+        "content" => "Signs of knowing your dogs behavior: TAIL WAGGING - excitement or happiness.
+       LICKING - affection, playfulness, or excitement. BARKING - happiness, attention, seeing something unfamiliar or 
+       stressed"
     ]
 ];
 ?>
@@ -44,7 +52,6 @@ $articles = [
 <body>
     
 <?php include('Templates/header.php'); ?>
-
     <div class="container">
      <div class="index-headings">   <h2>Welcome to the Pet Care Guide</h2> </div>
         <div class="articles-container">
