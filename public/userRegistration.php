@@ -1,22 +1,21 @@
 <?php
-require_once('classes/User.php');
-require_once('PawsibleDatabase.php');
+require_once 'src/DBConnect.php';
+require_once 'CRUD/create.php';
+require_once 'src/common.php';
+require_once 'classes/User.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = htmlspecialchars($_POST["username"]);
-    $email = htmlspecialchars($_POST["email"]);
-    $password = htmlspecialchars($_POST["password"]);
+    $username = escape($_POST["username"]);
+    $email = escape($_POST["email"]);
+    $password = escape($_POST["password"]);
 
     if (!empty($username) && !empty($email) && !empty($password)) {
+        // no input in form post for first name, surname, phone number, and address so they just get set to empty string :(
         $user = new User($username, '', '', $email, $password, '', '');
 
-        $database = new PawsibleDatabase();
-        $database->createConnection("127.0.0.1", "root", "Bagels12", "pawsible");
-
-        // Prepare data for insertion
         $data = [
             'username' => $user->getUsername(),
-            'fullName' => $user->getFirstName(),
+            'firstName' => $user->getFirstName(),
             'surname' => $user->getSurname(),
             'email' => $user->getEmail(),
             'password' => password_hash($user->getPassword(), PASSWORD_DEFAULT),
@@ -24,13 +23,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'address' => $user->getAddress(),
         ];
 
-        // Insert user into the 'users' table
-        $result = $database->create('user', $data);
+        // Insert user into the users table
+        $createdUser = create('users', $data);
 
-        $database->closeConnection();
-
-        if ($result) {
-            $message = "<p class='result' style='color: green;'>Registration Successful!</p>";
+        if ($createdUser) {
+            header("Location: userLogin.php");
+            exit;
         } else {
             $message = "<p class='result' style='color: red;'>Registration Failed. Please try again.</p>";
         }
@@ -56,10 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Pawsible</title>
 </head>
 <body>
-    
-<?php include('Templates/header.php'); ?>
-
-        
+     
     <div id class="contact-container">
            <div id class="index-headings"><h2>User Registration</h2></div>
             <form action="" method="POST">
@@ -92,4 +87,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php include('Templates/footer.php'); ?>
     
 </body>
-</html>
+</html>    
